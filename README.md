@@ -1,4 +1,7 @@
 # Sweplox Minecraft
+This repository contains our plugins and configurations on each server for our Minecraft community on Sweplox.
+
+Help is always welcomed.
 
 # Setup for new server
 1. Fork this repository
