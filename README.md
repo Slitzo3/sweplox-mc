@@ -26,7 +26,7 @@ These folders should contain plugins and configurations on each server.
 # What do I do with sensitive information?
 If you got information like passwords or IP's that shall not get exposed, read this.
 
-Remove the sensitive part and insert `{{ }}` instead, and instead of the `{{ }}` give it a name.
+Remove the sensitive part and insert `{{ }}` instead, and inside of the `{{ }}` give it a name like: `{{ data }}` depending on the context.
 This will be used later to automatically insert the sensitive data from our private machines.
 
 How it works:
