@@ -5,7 +5,8 @@ import re
 Config: json
 Errors: list = []
 IgnoreDir: list = [".git"]
-IgnoreFile: list = ["SAIP.py", "README.md", "config.json"]
+IgnoreFile: list = ["README.md", "config.json"]
+IgnoreExtension = (".jar", ".py", ".md")
 # Get config file
 c = open("config.json", "rt")
 c = json.load(c)
@@ -16,7 +17,7 @@ for subdir, dirs, files in os.walk("./"):
         # Ignore dirs we don't want to modify
         if not any(ext in subdir for ext in IgnoreDir):
             # Ignore files we don't want to modify
-            if not any(ext in file for ext in IgnoreFile):
+            if not any(ext in file for ext in IgnoreFile) and not file.endswith(IgnoreExtension):
                 # Open our file
                 with open(os.path.join(subdir, file), "rt") as a_file:
                     # Get all of the lines
