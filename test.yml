@@ -1,7 +1,7 @@
 data:
-  address: a
+  address: {{ database_ip }}
   database: minecraft
   username: {{ database_username }}
-  password: '{{database_password }}'
+  password: '{{ database_password }}'
   port: {{ database_port }}
   port2: {{ database_port2 }}

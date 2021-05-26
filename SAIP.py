@@ -1,10 +1,9 @@
 import json
 import os
-import bs4 as bs
 import re
 
 Config: json
-
+Errors: list = []
 IgnoreDir: list = [".git"]
 IgnoreFile: list = ["SAIP.py", "README.md", "config.json"]
 # Get config file
@@ -25,33 +24,33 @@ for subdir, dirs, files in os.walk("./"):
                     count = 0
 
                     # Loop through each line
-                    for line in list_of_lines:
-                        
+                    for x in range(len(list_of_lines)):
                         # Search for our secret stuff
-                        result = re.search("{{ (.*) }}", list_of_lines[count])
-
+                        result = re.search("{{ (.*) }}", list_of_lines[x])
+                        d = os.path.join(subdir, file)
                         # Check if not None
                         if result:
-                            # Go through each key etc
-                            for key, value in Config.items():
-                                # If we found a matching key continue here
-                                if result.group(1) == key:
-                                    # Replace the value
-                                    list_of_lines[count] = list_of_lines[count].replace(result.group(1), Config[result.group(1)])
+                            r = result.group(1)
+                            # If we found a matching key continue here
+                            if Config.get(r):
+                                # Replace the value
+                                list_of_lines[x] = list_of_lines[x].replace(r, Config.get(r))
+                                
+                                # Remove ugly brackets xd
+                                list_of_lines[x] = re.sub(r"{{\s", "", list_of_lines[x])
+                                list_of_lines[x] = list_of_lines[x].replace("{{", "")
+                                list_of_lines[x] = re.sub(r"\s}}", "", list_of_lines[x])
+                                list_of_lines[x] = list_of_lines[x].replace("}}", "")
+                            else:
+                                Errors.append("Unable to locate " + r + " in " + d)
+                        if x+1 == len(list_of_lines):
+                            print("Modifying " + d)
+                            file = open(os.path.join(subdir, file), "w")
+                            file.writelines(list_of_lines)
 
-                                    # Remove ugly brackets xd
-                                    list_of_lines[count] = list_of_lines[count].replace("{{ ", "")
-                                    list_of_lines[count] = list_of_lines[count].replace("{{", "")
-                                    list_of_lines[count] = list_of_lines[count].replace(" }}", "")
-                                    list_of_lines[count] = list_of_lines[count].replace("}}", "")
-                                else:
-                                    continue
-                                    # Error something here please.
-                                    # @Tolfx
-                            #print(result.group(1))
-                            
-                        count = count+1
-                    
-                    if count == len(list_of_lines):
-                        file = open(os.path.join(subdir, file), "w")
-                        file.writelines(list_of_lines)
+if len(Errors) > 0:
+    f = open("errors.txt", "a")
+    for x in Errors:
+        f.write("\n" +x)
+        continue
+    f.close()
