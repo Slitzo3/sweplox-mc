@@ -1,2 +1,2 @@
-# Sweplox Minecraft - Towny
+# Sweplox Minecraft
 More coming soon..
