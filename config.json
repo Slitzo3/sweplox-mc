@@ -2,5 +2,6 @@
     "database_ip": "super cool ip",
     "database_port": "super cool port",
     "database_password": "super cool password",
-    "database_username": "super cool username"
+    "database_username": "super cool username",
+    "database_name": "super cool database name"
 }
