@@ -6,7 +6,7 @@ Config: json
 Errors: list = []
 IgnoreDir: list = [".git"]
 IgnoreFile: list = ["README.md", "config.json"]
-IgnoreExtension = (".jar", ".py", ".md")
+IgnoreExtension = (".jar", ".py", ".md", ".db")
 # Get config file
 c = open("config.json", "rt")
 c = json.load(c)
