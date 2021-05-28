@@ -1,0 +1,6 @@
+mysql:
+  url: jdbc:mysql://{{ database_ip }}:{{ database_password }}/{{ database_name }}
+  username: {{ database_username }}
+  password: {{ database_password }}
+useRabbitMq: false
+server-id: 45adbb80-a519-4a94-8ed0-df2cd82f09c3
