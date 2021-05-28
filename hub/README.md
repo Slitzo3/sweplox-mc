@@ -1,5 +1,4 @@
 # Sweplox Minecraft - Hub
-More coming soon..
 
 ## Description
-....
+Our lobby/hub for the minecraft server.
