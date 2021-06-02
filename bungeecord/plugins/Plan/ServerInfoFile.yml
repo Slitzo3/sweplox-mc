@@ -1,0 +1,6 @@
+# Changing the UUID in this file will make Plan regard your server as a completely new server
+# Tread with caution.
+Server:
+    ID: 1
+    UUID: 96b33224-e347-4131-8941-26fae6ce7a9f
+    Web_address: http://{{ server_ip }}:8804

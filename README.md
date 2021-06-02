@@ -41,6 +41,7 @@ Database IP: {{ database_ip }}
 Database Port: {{ database_port }}
 Database Password: {{ database_password }}
 Database User: {{ database_username }}
+Database Name: {{ database_name }}
 ...
 ```
 
